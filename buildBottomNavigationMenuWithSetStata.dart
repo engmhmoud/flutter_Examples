@@ -80,10 +80,44 @@ class _TestBottomSheetWithSetStateState
 
   void _selectItem(String name) {
     print(name);
-    setState(() {
+   
       _controller.setState(() {
         _selectedItem = name;
       });
+  
+  }
+
+//Example 2
+  bool isGreen = false;
+  var controller;
+  void snackbarTest() {
+    controller = _scaffoldKey.currentState.showBottomSheet((c) => Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            InkWell(
+              onTap:()=> changeColor(),
+              child: Container(
+                height: 40,
+                width: 50,
+                color: isGreen ? Colors.green : Colors.red,
+              ),
+            ),
+            InkWell(
+              onTap:()=>changeColor(),
+              child: Container(
+                height: 40,
+                width: 50,
+                color: isGreen ? Colors.red : Colors.green,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  changeColor() {
+    controller.setState(() {
+      isGreen = !isGreen;
     });
   }
 }
